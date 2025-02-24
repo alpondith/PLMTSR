@@ -1,8 +1,8 @@
 %  the column arrays
-a = [1; 2; 3];
-b = [4; 5; 6];
+a = [ 2; 4];
+b = [3; 1];
 %  the row arrays
-c = [7, 8, 9];
+c = [6 ,5];
 
 % Transpose of array 'a'
 transpose_a = a';
