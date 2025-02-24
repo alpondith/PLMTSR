@@ -1,7 +1,7 @@
 % Generate a vector of random floating numbers between 0 and 1
 x = rand(1,10);
 
-% functions myMin which returns the minimum value and its index in the vector
+% functions myMin which returns the minimum value and its index
 function [minimum, index_min] = myMin(x)
     minimum = x(1);
     index_min = 1;
@@ -13,7 +13,7 @@ function [minimum, index_min] = myMin(x)
     end
 end
 
-% function myMax which returns the maximum value and its index in the vector
+% function myMax which returns the maximum value and its index
 function [maximum, index_max] = myMax(x)
     maximum = x(1);
     index_max = 1;
@@ -25,7 +25,7 @@ function [maximum, index_max] = myMax(x)
     end
 end
 
-% Find the maximum and minimum values in the vector and the corresponding indices
+% Find the maximum and minimum values and the corresponding indexes
 [minimum, index_min] = myMin(x);
 [maximum, index_max] = myMax(x);
 
