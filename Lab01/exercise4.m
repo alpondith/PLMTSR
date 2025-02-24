@@ -14,4 +14,4 @@ xe = abs(t).*exp(-abs(t));
 x = 0.5*(x0 + xe);
 
 % Plot x0, xe, and x
-plot(t, x0, t, x, t, xe);
+plot(t, x0, t, xe, t, x);
