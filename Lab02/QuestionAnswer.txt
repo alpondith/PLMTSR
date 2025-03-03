@@ -1,0 +1,9 @@
+QUESTION: Can you try to estimate which of the following has the highest spectral 
+efficiency: BPSK, 4-QAM, 16-QAM, 64-QAM after observing the number of transmitted 
+symbols in each modulation?
+
+ANSWER: 64-QAM has the highest spectral efficiency because it transmits 6 bits 
+per symbol, making better use of the available bandwidth compared to 
+BPSK (1 bit per symbol), 4-QAM (2 bits per symbol), and 16-QAM (4 bits per symbol). 
+However, higher spectral efficiency comes at the cost of increased susceptibility 
+to noise and interference.
