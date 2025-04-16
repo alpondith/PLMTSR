@@ -241,7 +241,7 @@ for i = 1:length_mobileUser3
     end
 end
 
-figure(3);
+figure(5);
 subplot(313)
 plot(user3basebandsig3, 'r');
 axis([0 100*length_mobileUser3 -1.5 1.5]);
@@ -286,7 +286,7 @@ length_pnupsampled3_User_3 = length(pnupsampled3_User_3);
  
 sigtx3_User_3 = user3bpskmod3.*pnupsampled3_User_3;
  
-figure(4)
+figure(6)
 subplot(311)
 stem(pn3_user_3, 'r');
 axis([0,length(pn3_user_3),-1.2,1.2])
@@ -300,6 +300,8 @@ plot(sigtx3_User_3, 'r');
 axis([0 100*length_mobileUser3 -2 2]);
 title('spread spectrum signal transmitted for user 3 is');
 grid on 
+
+
 %% CDMA transmitter user4
 user4basebandsig4 = [];
 
@@ -320,7 +322,7 @@ for i = 1:length_mobileUser4
         user4bpskmod4 = [user4bpskmod4 sqrt(2*Eb)*mobileUser4(i)*cos(2*pi*Fc*j)];
     end
 end
-figure(3);
+figure(7);
 subplot(313)
 plot(user4basebandsig4, 'r');
 axis([0 100*length_mobileUser4 -1.5 1.5]);
@@ -348,6 +350,7 @@ for i = 1:length_mobileUser4
         seed4(1) = temp;
     end 
 end
+
 pnupsampled4_User_4 = [];   
 len_pn4_user_4 = length(pn4_user_4);
 for i = 1:len_pn4_user_4
@@ -359,9 +362,11 @@ for i = 1:len_pn4_user_4
         end
     end
 end
+
 length_pnupsampled4_User_4 = length(pnupsampled4_User_4);
 sigtx4_User_4 = user4bpskmod4.*pnupsampled4_User_4;
-figure(4)
+
+figure(8)
 subplot(311)
 stem(pn4_user_4, 'r');
 axis([0,length(pn4_user_4),-1.2,1.2])
@@ -378,21 +383,20 @@ grid on
 
  
 %% Plotting the transmitted signal
-figure(5)
-subplot(2,1,1);
+figure(9)
+subplot(2,2,1);
 plot(sigtx1_User_1);
 grid on 
 title('spread spectrum signal txd for user 1');
-subplot(2,1,2);
+subplot(2,2,2);
 plot(sigtx2_User_2, 'r');
 grid on 
 title('spread spectrum signal txd for user 2');
-grid on
-subplot(2,1,3);
+subplot(2,2,3);
 plot(sigtx3_User_3, 'r');
 grid on
 title('spread spectrum signal txd for user 3');
-subplot(2,1,4);
+subplot(2,2,4);
 plot(sigtx4_User_4, 'r');
 grid on
 title('spread spectrum signal txd for user 4');
@@ -403,7 +407,7 @@ trasnmitted_signal = sigtx1_User_1 + sigtx2_User_2;
  
 composite_signal = awgn(trasnmitted_signal,SNR);
  
-figure(6)
+figure(10)
 subplot(211)
 plot(sigtx1_User_1+sigtx2_User_2);
 title('Composite signal sigtx1+sigtx2');
@@ -449,7 +453,7 @@ end
  
 rxbits1=rectpulse(rxbits1,100); 
  
-figure(7)
+figure(11)
 subplot(211)
 plot(user1basebandsig1)
 title('Transmitted bits of user1 data')
@@ -494,7 +498,7 @@ for i = 1:length_mobileUser2
 end
 rxbits2=rectpulse(rxbits2,100); 
  
-figure(8)
+figure(12)
 subplot(211)
 plot(user2basebandsig2)
 title('Transmitted bits of user2 data')
@@ -539,7 +543,7 @@ for i = 1:length_mobileUser3
 end
 rxbits3=rectpulse(rxbits3,100); 
  
-figure(9)
+figure(13)
 subplot(211)
 plot(user3basebandsig3)
 title('Transmitted bits of user3 data')
@@ -579,7 +583,7 @@ for i = 1:length_mobileUser4
 end
 rxbits4=rectpulse(rxbits4,100); 
  
-figure(10)
+figure(14)
 subplot(211)
 plot(user4basebandsig4)
 title('Transmitted bits of user4 data')
