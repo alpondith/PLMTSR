@@ -243,12 +243,12 @@ end
 
 figure(5);
 subplot(313)
-plot(user3basebandsig3, 'r');
+plot(user3basebandsig3, 'g');
 axis([0 100*length_mobileUser3 -1.5 1.5]);
 title('Original Binary Sequence for User3 is')
 grid on
 subplot(312)
-plot(user3bpskmod3, 'r');
+plot(user3bpskmod3, 'g');
 title(' BPSK Signal for User 3 is');
 grid on
 
@@ -288,15 +288,15 @@ sigtx3_User_3 = user3bpskmod3.*pnupsampled3_User_3;
  
 figure(6)
 subplot(311)
-stem(pn3_user_3, 'r');
+stem(pn3_user_3, 'g');
 axis([0,length(pn3_user_3),-1.2,1.2])
 title('PN sequence for user3')
 subplot(312)
-stem(pnupsampled3_User_3, 'r');
+stem(pnupsampled3_User_3, 'g');
 axis([0,length_pnupsampled3_User_3,-1.2,1.2])
 title('PN sequence for user3 upsampled');
 subplot(313)
-plot(sigtx3_User_3, 'r');
+plot(sigtx3_User_3, 'g');
 axis([0 100*length_mobileUser3 -2 2]);
 title('spread spectrum signal transmitted for user 3 is');
 grid on 
@@ -324,12 +324,12 @@ for i = 1:length_mobileUser4
 end
 figure(7);
 subplot(313)
-plot(user4basebandsig4, 'r');
+plot(user4basebandsig4, 'c');
 axis([0 100*length_mobileUser4 -1.5 1.5]);
 title('Original Binary Sequence for User4 is')
 grid on 
 subplot(312)
-plot(user4bpskmod4, 'r');
+plot(user4bpskmod4, 'c');
 title(' BPSK Signal for User 4 is');
 grid on
 
@@ -368,15 +368,15 @@ sigtx4_User_4 = user4bpskmod4.*pnupsampled4_User_4;
 
 figure(8)
 subplot(311)
-stem(pn4_user_4, 'r');
+stem(pn4_user_4, 'c');
 axis([0,length(pn4_user_4),-1.2,1.2])
 title('PN sequence for user4')
 subplot(312)
-stem(pnupsampled4_User_4, 'r');
+stem(pnupsampled4_User_4, 'c');
 axis([0,length_pnupsampled4_User_4,-1.2,1.2])
 title('PN sequence for user4 upsampled');
 subplot(313)
-plot(sigtx4_User_4, 'r');
+plot(sigtx4_User_4, 'c');
 axis([0 100*length_mobileUser4 -2 2]);
 title('spread spectrum signal transmitted for user 4 is');
 grid on 
@@ -393,11 +393,11 @@ plot(sigtx2_User_2, 'r');
 grid on 
 title('spread spectrum signal txd for user 2');
 subplot(2,2,3);
-plot(sigtx3_User_3, 'r');
+plot(sigtx3_User_3, 'g');
 grid on
 title('spread spectrum signal txd for user 3');
 subplot(2,2,4);
-plot(sigtx4_User_4, 'r');
+plot(sigtx4_User_4, 'c');
 grid on
 title('spread spectrum signal txd for user 4');
 
