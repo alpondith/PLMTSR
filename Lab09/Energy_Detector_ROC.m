@@ -3,7 +3,6 @@ clc
 clear 
 close all 
 
-
 %% Functions 
 function [Roc_f] = Roc_calculation(f,Ground_truth) %f is the signal, Ground_truth is the reference signal 
 
@@ -41,7 +40,6 @@ function [dataNorm] = normalize(energy_signal)
 end 
 
 %% Load the OFDM signal (at the secondary user side) 
-
 load('rxOFDM_signal.mat'); 
 
 %% Extract a specific sub-carrier to search the presence of the Primary User 
