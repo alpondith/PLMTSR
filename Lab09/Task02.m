@@ -1,3 +1,4 @@
+% filepath: /home/alpondith/projects/PLMTSR/Lab09/Task02.m
 % ----------------------------------------------------------------------- % 
 clc 
 clear 
@@ -43,11 +44,11 @@ end
 load('rxOFDM_signal.mat'); 
 
 %% Extract a specific sub-carrier to search the presence of the Primary User 
-subcarrier_index = 8; % Change subcarrier index here
+subcarrier_index = 6; % Change subcarrier index here
 signal = rxOFDM_signal(subcarrier_index, :); 
 
 %% Plot the signal
-figure;
+figure(1);
 plot(abs(signal));
 title('Extracted Subcarrier Signal');
 xlabel('Sample Index');
@@ -57,6 +58,19 @@ grid on;
 %% Create the Ground Truth 
 threshold_values = [0.9, 0.7, 0.5, 0.3, 0.1]; % Threshold values to test
 colors = ['r', 'g', 'b', 'm', 'c']; % Colors for plotting
+
+% Initialize figures for combined plots
+figure(2); % Ground Truth for All Thresholds
+hold on;
+legend_entries = {};
+
+figure(3); % ROC Curves for All Thresholds
+hold on;
+legend_entries_roc = {};
+
+figure(4); % Normalized Energy Signal
+hold on;
+legend_entries_energy = {};
 
 for t_idx = 1:length(threshold_values)
     threshold = threshold_values(t_idx);
@@ -68,42 +82,56 @@ for t_idx = 1:length(threshold_values)
         end
     end
 
-    %% Plot the ground truth
-    figure;
-    plot(ground_truth, colors(t_idx));
-    title(['Ground Truth (Threshold = ', num2str(threshold), ')']);
-    xlabel('Sample Index');
-    ylabel('Ground Truth');
-    grid on;
+    %% Plot the ground truth in a single figure
+    figure(2); % Ground truth figure
+    plot(ground_truth, colors(t_idx), 'LineWidth', 1.5);
+    legend_entries{end+1} = ['Threshold = ', num2str(threshold)];
 
     %% Calculate the energy of each OFDM symbol 
     for j = 1:size(signal, 2) 
-        energy_signal(1, j) = (abs(signal(1, j))).^2; 
+        energy_signal(1, j) = (abs(signal(1, j))).^2;
     end 
 
     %% Normalize the energy signal 
     dataNorm = normalize(energy_signal); 
 
+    %% Plot the normalized energy signal in Figure 4
+    figure(4);
+    plot(dataNorm, colors(t_idx), 'LineWidth', 1.5);
+    legend_entries_energy{end+1} = ['Threshold = ', num2str(threshold)];
+
     %% Calculate the ROC 
     [Roc_f] = Roc_calculation(dataNorm, ground_truth); 
 
-    %% Plot the ROC 
-    x = [0 1]; 
-    y = [1 0]; 
-    z = [0 1]; 
-    zz = [0 1]; 
-
-    figure; 
+    %% Plot the ROC in a single figure
+    figure(3); % ROC figure
     sm = 0.8; 
-
-    plot(smooth(Roc_f(1, :), sm), smooth(Roc_f(2, :), sm), 'LineWidth', 3); 
-    hold on; 
-    plot(x, y, '--', 'LineWidth', 1.2); 
-    plot(z, zz, '--', 'LineWidth', 1.2); 
-    title(['ROC (Threshold = ', num2str(threshold), ')']); 
-    xlabel('Probability of False Alarm (Pfa)'); 
-    ylabel('Probability of Detection (Pd)'); 
-    grid on; 
+    plot(smooth(Roc_f(1, :), sm), smooth(Roc_f(2, :), sm), 'LineWidth', 1.5, 'Color', colors(t_idx));
+    legend_entries_roc{end+1} = ['Threshold = ', num2str(threshold)];
 end
+
+%% Finalize Ground Truth Plot
+figure(2);
+title('Ground Truth for Different Thresholds');
+xlabel('Sample Index');
+ylabel('Ground Truth');
+legend(legend_entries, 'Location', 'best');
+grid on;
+
+%% Finalize ROC Plot
+figure(3);
+title('ROC Curves for Different Thresholds');
+xlabel('Probability of False Alarm (Pfa)');
+ylabel('Probability of Detection (Pd)');
+legend(legend_entries_roc, 'Location', 'best');
+grid on;
+
+%% Finalize Normalized Energy Signal Plot
+figure(4);
+title('Normalized Energy Signal for Different Thresholds');
+xlabel('Sample Index');
+ylabel('Normalized Energy');
+legend(legend_entries_energy, 'Location', 'best');
+grid on;
 
 % ----------------------------------------------------------------------- %
